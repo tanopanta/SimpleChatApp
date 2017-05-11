@@ -1,4 +1,4 @@
-# SympleChatApp
+# SimpleChatApp
 Simple chat application with TCP/IP  
 ## Operating environment  
 Windows  
