@@ -16,6 +16,7 @@
 #include <IdContext.hpp>
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.Menus.hpp>
+#include <Vcl.WinXCtrls.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -30,12 +31,18 @@ __published:	// IDE で管理されるコンポーネント
 	TButton *Button1;
 	TPopupMenu *PopupMenu1;
 	TMenuItem *deleteLog;
+	TMainMenu *MainMenu1;
+	TMenuItem *ools1;
+	TMenuItem *Option1;
+	TToggleSwitch *ToggleSwitch1;
 	void __fastcall ButtonSendClick(TObject *Sender);
 	void __fastcall IdTCPServer1Execute(TIdContext *AContext);
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall deleteLogClick(TObject *Sender);
+	void __fastcall Option1Click(TObject *Sender);
+	void __fastcall ToggleSwitch1Click(TObject *Sender);
 private:	// ユーザー宣言
 public:		// ユーザー宣言
 	__fastcall TForm1(TComponent* Owner);

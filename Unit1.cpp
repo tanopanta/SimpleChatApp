@@ -5,6 +5,7 @@
 
 #include "Unit1.h"
 #include "Unit2.h"
+#include "Unit3.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -96,6 +97,23 @@ void __fastcall TForm1::FormShow(TObject *Sender)
 void __fastcall TForm1::deleteLogClick(TObject *Sender)
 {
 	DeleteLog();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Option1Click(TObject *Sender)
+{
+	Form3->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::ToggleSwitch1Click(TObject *Sender)
+{
+	if(ToggleSwitch1->State == tssOn) {
+		IdTCPServer1->Active = true;
+	} else {
+		IdTCPServer1->Active = false;
+    }
 }
 //---------------------------------------------------------------------------
 
