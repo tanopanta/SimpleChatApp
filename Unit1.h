@@ -38,11 +38,11 @@ __published:	// IDE で管理されるコンポーネント
 	void __fastcall ButtonSendClick(TObject *Sender);
 	void __fastcall IdTCPServer1Execute(TIdContext *AContext);
 	void __fastcall Button1Click(TObject *Sender);
-	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
 	void __fastcall FormShow(TObject *Sender);
 	void __fastcall deleteLogClick(TObject *Sender);
 	void __fastcall Option1Click(TObject *Sender);
 	void __fastcall ToggleSwitch1Click(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// ユーザー宣言
 public:		// ユーザー宣言
 	__fastcall TForm1(TComponent* Owner);

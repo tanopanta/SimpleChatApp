@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 335
-  ClientWidth = 458
+  ClientHeight = 345
+  ClientWidth = 470
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,7 +13,7 @@ object Form1: TForm1
   Menu = MainMenu1
   OldCreateOrder = False
   StyleElements = [seFont, seClient]
-  OnCloseQuery = FormCloseQuery
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -89,11 +89,11 @@ object Form1: TForm1
     OnClick = ButtonSendClick
   end
   object Button1: TButton
-    Left = 264
-    Top = 59
+    Left = 239
+    Top = 54
     Width = 105
     Height = 25
-    Caption = 'Check my IP address'
+    Caption = 'Check IP address'
     TabOrder = 4
     OnClick = Button1Click
   end

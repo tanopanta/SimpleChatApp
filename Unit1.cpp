@@ -20,6 +20,11 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::ButtonSendClick(TObject *Sender)
 {
+	if(ToggleSwitch1->State == tssOff) {
+		ShowMessage("ada");
+		return;
+    }
+
 	UnicodeString message = EditMessage->Text.Trim();
 	if(message.Length() == 0) {
 		ShowMessage("empty message!");
@@ -51,7 +56,6 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
     TIdStack::IncUsage();
 
 	TStrings* res = GStack->LocalAddresses;
-	//ShowMessage(res->Text);
 	for(int i = 0; i < res->Count; i++) {
 	   Form2->ListBox1->Items->Strings[i] = res->Strings[i];
 	}
@@ -61,7 +65,11 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::SaveLog()
 {
-	ListBoxMessage->Items->SaveToFile(fName);
+	try{
+		ListBoxMessage->Items->SaveToFile(fName);
+	} catch (Exception &exception){
+        Application->ShowException(&exception);
+    }
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::LoadLog()
@@ -82,11 +90,6 @@ void __fastcall TForm1::DeleteLog()
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::FormCloseQuery(TObject *Sender, bool &CanClose)
-{
-	SaveLog();
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::FormShow(TObject *Sender)
 {
@@ -113,7 +116,13 @@ void __fastcall TForm1::ToggleSwitch1Click(TObject *Sender)
 		IdTCPServer1->Active = true;
 	} else {
 		IdTCPServer1->Active = false;
-    }
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
+{
+	SaveLog();
 }
 //---------------------------------------------------------------------------
 
