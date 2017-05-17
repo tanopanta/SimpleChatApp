@@ -17,6 +17,8 @@
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.Menus.hpp>
 #include <Vcl.WinXCtrls.hpp>
+#include <Vcl.Samples.Spin.hpp>
+#include <Vcl.Mask.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -24,7 +26,6 @@ __published:	// IDE で管理されるコンポーネント
 	TIdTCPServer *IdTCPServer1;
 	TIdTCPClient *IdTCPClient1;
 	TLabel *Label1;
-	TEdit *EditHost;
 	TListBox *ListBoxMessage;
 	TEdit *EditMessage;
 	TButton *ButtonSend;
@@ -35,6 +36,7 @@ __published:	// IDE で管理されるコンポーネント
 	TMenuItem *ools1;
 	TMenuItem *Option1;
 	TToggleSwitch *ToggleSwitch1;
+	TComboBox *ComboBoxHost;
 	void __fastcall ButtonSendClick(TObject *Sender);
 	void __fastcall IdTCPServer1Execute(TIdContext *AContext);
 	void __fastcall Button1Click(TObject *Sender);

@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 345
-  ClientWidth = 470
+  ClientHeight = 340
+  ClientWidth = 471
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -30,24 +30,10 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
   end
-  object EditHost: TEdit
-    Left = 64
-    Top = 56
-    Width = 169
-    Height = 27
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -16
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 0
-    Text = '127.0.0.1'
-  end
   object ListBoxMessage: TListBox
     Left = 8
     Top = 97
-    Width = 401
+    Width = 450
     Height = 200
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -57,12 +43,12 @@ object Form1: TForm1
     ItemHeight = 19
     ParentFont = False
     PopupMenu = PopupMenu1
-    TabOrder = 1
+    TabOrder = 0
   end
   object EditMessage: TEdit
     Left = 8
     Top = 303
-    Width = 321
+    Width = 362
     Height = 27
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -70,10 +56,10 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
   end
   object ButtonSend: TButton
-    Left = 335
+    Left = 376
     Top = 303
     Width = 82
     Height = 27
@@ -85,16 +71,16 @@ object Form1: TForm1
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
     OnClick = ButtonSendClick
   end
   object Button1: TButton
-    Left = 239
+    Left = 231
     Top = 54
     Width = 105
     Height = 25
     Caption = 'Check IP address'
-    TabOrder = 4
+    TabOrder = 3
     OnClick = Button1Click
   end
   object ToggleSwitch1: TToggleSwitch
@@ -104,8 +90,22 @@ object Form1: TForm1
     Height = 20
     StateCaptions.CaptionOn = 'Online'
     StateCaptions.CaptionOff = 'Offline'
-    TabOrder = 5
+    TabOrder = 4
     OnClick = ToggleSwitch1Click
+  end
+  object ComboBoxHost: TComboBox
+    Left = 64
+    Top = 56
+    Width = 145
+    Height = 27
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+    Text = '127.0.0.1'
   end
   object IdTCPServer1: TIdTCPServer
     Bindings = <

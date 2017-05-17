@@ -10,8 +10,8 @@
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
-
-UnicodeString fName = "chat.log";
+UnicodeString logName = "chat.log";
+UnicodeString ipLogName = "ip.log";
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -20,17 +20,12 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::ButtonSendClick(TObject *Sender)
 {
-	if(ToggleSwitch1->State == tssOff) {
-		ShowMessage("ada");
-		return;
-    }
-
 	UnicodeString message = EditMessage->Text.Trim();
 	if(message.Length() == 0) {
 		ShowMessage("empty message!");
 		return;
 	}
-	IdTCPClient1->Host = EditHost->Text.Trim();
+	IdTCPClient1->Host = ComboBoxHost->Text;
 	IdTCPClient1->Connect();
 	TIdBytes bytes = IndyTextEncoding_UTF8()->GetBytes(message);
 	IdTCPClient1->Socket->Write(bytes.Length);
@@ -39,6 +34,10 @@ void __fastcall TForm1::ButtonSendClick(TObject *Sender)
 
 	ListBoxMessage->Items->Insert(0, "-> " + message);
 	EditMessage->Clear();
+
+	if(ComboBoxHost->Items->IndexOf(ComboBoxHost->Text) == -1) {
+		ComboBoxHost->Items->Add(ComboBoxHost->Text);
+    }
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::IdTCPServer1Execute(TIdContext *AContext)
@@ -66,27 +65,29 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 void __fastcall TForm1::SaveLog()
 {
 	try{
-		ListBoxMessage->Items->SaveToFile(fName);
+		ListBoxMessage->Items->SaveToFile(logName);
+		ComboBoxHost->Items->SaveToFile(ipLogName);
 	} catch (Exception &exception){
-        Application->ShowException(&exception);
+		Application->ShowException(&exception);
     }
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::LoadLog()
 {
-	if(!FileExists(fName)) {
+	if(!FileExists(logName) || !FileExists(ipLogName)) {
 		return;
 	}
-	ListBoxMessage->Items->LoadFromFile(fName);
+	ListBoxMessage->Items->LoadFromFile(logName);
+	ComboBoxHost->Items->LoadFromFile(ipLogName);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::DeleteLog()
 {
-	if(!FileExists(fName)) {
+	if(!FileExists(logName)) {
 		return;
 	}
 	ListBoxMessage->Items->Clear();
-	ListBoxMessage->Items->SaveToFile(fName);
+	ListBoxMessage->Items->SaveToFile(logName);
 }
 //---------------------------------------------------------------------------
 
@@ -125,4 +126,5 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
 	SaveLog();
 }
 //---------------------------------------------------------------------------
+
 
