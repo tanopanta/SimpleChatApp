@@ -25,7 +25,8 @@ void __fastcall TForm1::ButtonSendClick(TObject *Sender)
 		ShowMessage("empty message!");
 		return;
 	}
-	IdTCPClient1->Host = ComboBoxHost->Text;
+	UnicodeString Host = ComboBoxHost->Text;
+	IdTCPClient1->Host = Host;
 	IdTCPClient1->Connect();
 	TIdBytes bytes = IndyTextEncoding_UTF8()->GetBytes(message);
 	IdTCPClient1->Socket->Write(bytes.Length);
@@ -35,9 +36,14 @@ void __fastcall TForm1::ButtonSendClick(TObject *Sender)
 	ListBoxMessage->Items->Insert(0, "-> " + message);
 	EditMessage->Clear();
 
-	if(ComboBoxHost->Items->IndexOf(ComboBoxHost->Text) == -1) {
-		ComboBoxHost->Items->Add(ComboBoxHost->Text);
-    }
+	int index = ComboBoxHost->Items->IndexOf(Host);
+	if(index == -1) {
+		ComboBoxHost->Items->Insert(0, Host);
+	}else if(Host != ComboBoxHost->Items->Strings[0]) {
+		ComboBoxHost->Items->Move(index, 0);
+		ComboBoxHost->Text = ComboBoxHost->Items->Strings[0];
+	}
+
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::IdTCPServer1Execute(TIdContext *AContext)
