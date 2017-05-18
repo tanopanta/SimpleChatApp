@@ -45,6 +45,7 @@ __published:	// IDE で管理されるコンポーネント
 	void __fastcall Option1Click(TObject *Sender);
 	void __fastcall ToggleSwitch1Click(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall FormResize(TObject *Sender);
 private:	// ユーザー宣言
 public:		// ユーザー宣言
 	__fastcall TForm1(TComponent* Owner);

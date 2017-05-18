@@ -85,6 +85,9 @@ void __fastcall TForm1::LoadLog()
 	}
 	ListBoxMessage->Items->LoadFromFile(logName);
 	ComboBoxHost->Items->LoadFromFile(ipLogName);
+	if(ComboBoxHost->Items->Count > 0) {
+		ComboBoxHost->Text = ComboBoxHost->Items->Strings[0];
+	}
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::DeleteLog()
@@ -133,4 +136,10 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TForm1::FormResize(TObject *Sender)
+{
+	ListBoxMessage->Width = Form1->Width - 60;
+}
+//---------------------------------------------------------------------------
 

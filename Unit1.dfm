@@ -2,21 +2,22 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 347
-  ClientWidth = 475
+  ClientHeight = 333
+  ClientWidth = 476
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Height = -16
+  Font.Name = 'Yu Gothic UI'
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
   StyleElements = [seFont, seClient]
   OnClose = FormClose
+  OnResize = FormResize
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 21
   object Label1: TLabel
     Left = 8
     Top = 56
@@ -76,20 +77,26 @@ object Form1: TForm1
   end
   object Button1: TButton
     Left = 231
-    Top = 54
-    Width = 105
+    Top = 57
+    Width = 130
     Height = 25
     Caption = 'Check IP address'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 3
     OnClick = Button1Click
   end
   object ToggleSwitch1: TToggleSwitch
     Left = 8
     Top = 16
-    Width = 88
-    Height = 20
-    StateCaptions.CaptionOn = 'Online'
-    StateCaptions.CaptionOff = 'Offline'
+    Width = 124
+    Height = 23
+    StateCaptions.CaptionOn = 'ServerOn'
+    StateCaptions.CaptionOff = 'ServerOff'
     TabOrder = 4
     OnClick = ToggleSwitch1Click
   end
