@@ -40,6 +40,7 @@ __published:	// IDE で管理されるコンポーネント
 	TComboBox *ComboBoxHost;
 	TPanel *Panel1;
 	TPanel *Panel2;
+	TMenuItem *Copy1;
 	void __fastcall ButtonSendClick(TObject *Sender);
 	void __fastcall IdTCPServer1Execute(TIdContext *AContext);
 	void __fastcall Button1Click(TObject *Sender);
@@ -48,6 +49,7 @@ __published:	// IDE で管理されるコンポーネント
 	void __fastcall Option1Click(TObject *Sender);
 	void __fastcall ToggleSwitch1Click(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall Copy1Click(TObject *Sender);
 private:	// ユーザー宣言
 public:		// ユーザー宣言
 	__fastcall TForm1(TComponent* Owner);

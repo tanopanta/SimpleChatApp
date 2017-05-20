@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 345
+  ClientHeight = 325
   ClientWidth = 498
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,16 +19,22 @@ object Form1: TForm1
   TextHeight = 21
   object Panel2: TPanel
     Left = 0
-    Top = 316
+    Top = 295
     Width = 498
-    Height = 29
+    Height = 30
     Align = alBottom
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Yu Gothic UI'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 2
     object ButtonSend: TButton
       Left = 415
       Top = 1
       Width = 82
-      Height = 27
+      Height = 28
       Align = alRight
       Caption = 'Send'
       Default = True
@@ -40,25 +46,21 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 0
       OnClick = ButtonSendClick
-      ExplicitLeft = 376
-      ExplicitTop = 6
     end
     object EditMessage: TEdit
       Left = 1
       Top = 1
       Width = 414
-      Height = 27
+      Height = 28
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -16
+      Font.Height = -19
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      ExplicitLeft = 8
-      ExplicitTop = 6
-      ExplicitWidth = 362
+      ExplicitHeight = 31
     end
   end
   object Panel1: TPanel
@@ -125,7 +127,7 @@ object Form1: TForm1
     Left = 0
     Top = 97
     Width = 498
-    Height = 219
+    Height = 198
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -136,8 +138,6 @@ object Form1: TForm1
     ParentFont = False
     PopupMenu = PopupMenu1
     TabOrder = 0
-    ExplicitLeft = 1
-    ExplicitTop = 92
   end
   object IdTCPServer1: TIdTCPServer
     Bindings = <
@@ -164,6 +164,10 @@ object Form1: TForm1
     object deleteLog: TMenuItem
       Caption = 'Clear all Log'
       OnClick = deleteLogClick
+    end
+    object Copy1: TMenuItem
+      Caption = 'Copy'
+      OnClick = Copy1Click
     end
   end
   object MainMenu1: TMainMenu

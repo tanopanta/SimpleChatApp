@@ -1,6 +1,7 @@
 //---------------------------------------------------------------------------
 
 #include <vcl.h>
+#include <clipbrd.hpp>
 #pragma hdrstop
 
 #include "Unit1.h"
@@ -137,4 +138,14 @@ void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
 //---------------------------------------------------------------------------
 
 
+
+void __fastcall TForm1::Copy1Click(TObject *Sender)
+{
+	if(ListBoxMessage->ItemIndex == -1) {
+		return;
+	}
+	UnicodeString cpmsg = ListBoxMessage->Items->Strings[ListBoxMessage->ItemIndex];
+	Clipboard()->AsText = cpmsg.SubString(4,cpmsg.Length() - 3);
+}
+//---------------------------------------------------------------------------
 
