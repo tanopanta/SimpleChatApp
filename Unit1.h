@@ -19,6 +19,7 @@
 #include <Vcl.WinXCtrls.hpp>
 #include <Vcl.Samples.Spin.hpp>
 #include <Vcl.Mask.hpp>
+#include <Vcl.ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -37,6 +38,8 @@ __published:	// IDE で管理されるコンポーネント
 	TMenuItem *Option1;
 	TToggleSwitch *ToggleSwitch1;
 	TComboBox *ComboBoxHost;
+	TPanel *Panel1;
+	TPanel *Panel2;
 	void __fastcall ButtonSendClick(TObject *Sender);
 	void __fastcall IdTCPServer1Execute(TIdContext *AContext);
 	void __fastcall Button1Click(TObject *Sender);
@@ -45,7 +48,6 @@ __published:	// IDE で管理されるコンポーネント
 	void __fastcall Option1Click(TObject *Sender);
 	void __fastcall ToggleSwitch1Click(TObject *Sender);
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
-	void __fastcall FormResize(TObject *Sender);
 private:	// ユーザー宣言
 public:		// ユーザー宣言
 	__fastcall TForm1(TComponent* Owner);
