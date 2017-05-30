@@ -123,6 +123,10 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
+        <CppCompile Include="MessageData.cpp">
+            <DependentOn>MessageData.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Unit1.cpp">
             <Form>Form1</Form>
             <FormType>dfm</FormType>

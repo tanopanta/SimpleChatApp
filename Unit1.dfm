@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 325
-  ClientWidth = 498
+  ClientHeight = 355
+  ClientWidth = 530
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object Form1: TForm1
   TextHeight = 21
   object Panel2: TPanel
     Left = 0
-    Top = 295
-    Width = 498
+    Top = 325
+    Width = 530
     Height = 30
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
@@ -30,8 +30,10 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 2
+    ExplicitTop = 255
+    ExplicitWidth = 498
     object ButtonSend: TButton
-      Left = 415
+      Left = 447
       Top = 1
       Width = 82
       Height = 28
@@ -46,11 +48,12 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 0
       OnClick = ButtonSendClick
+      ExplicitLeft = 415
     end
     object EditMessage: TEdit
       Left = 1
       Top = 1
-      Width = 414
+      Width = 446
       Height = 28
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
@@ -60,16 +63,18 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
       TabOrder = 1
+      ExplicitWidth = 414
       ExplicitHeight = 31
     end
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 498
+    Width = 530
     Height = 97
     Align = alTop
     TabOrder = 1
+    ExplicitWidth = 498
     object Label1: TLabel
       Left = 8
       Top = 56
@@ -126,8 +131,8 @@ object Form1: TForm1
   object ListBoxMessage: TListBox
     Left = 0
     Top = 97
-    Width = 498
-    Height = 198
+    Width = 530
+    Height = 228
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -138,6 +143,8 @@ object Form1: TForm1
     ParentFont = False
     PopupMenu = PopupMenu1
     TabOrder = 0
+    ExplicitWidth = 498
+    ExplicitHeight = 158
   end
   object IdTCPServer1: TIdTCPServer
     Bindings = <
@@ -161,6 +168,13 @@ object Form1: TForm1
   object PopupMenu1: TPopupMenu
     Left = 192
     Top = 160
+    object Detail1: TMenuItem
+      Caption = 'Detail'
+      OnClick = Detail1Click
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
     object deleteLog: TMenuItem
       Caption = 'Clear all Log'
       OnClick = deleteLogClick
@@ -177,7 +191,6 @@ object Form1: TForm1
       Caption = 'Tools'
       object Option1: TMenuItem
         Caption = 'Option'
-        OnClick = Option1Click
       end
     end
   end

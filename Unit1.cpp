@@ -7,12 +7,14 @@
 #include "Unit1.h"
 #include "Unit2.h"
 #include "Unit3.h"
+#include "MessageData.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
 TForm1 *Form1;
 UnicodeString logName = "chat.log";
 UnicodeString ipLogName = "ip.log";
+MessageData mData;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
@@ -35,6 +37,7 @@ void __fastcall TForm1::ButtonSendClick(TObject *Sender)
 	IdTCPClient1->Disconnect();
 
 	ListBoxMessage->Items->Insert(0, "-> " + message);
+	mData.Add(message, Host, SEND);
 	EditMessage->Clear();
 
 	int index = ComboBoxHost->Items->IndexOf(Host);
@@ -53,6 +56,7 @@ void __fastcall TForm1::IdTCPServer1Execute(TIdContext *AContext)
 	UnicodeString message = AContext->Connection->Socket->ReadString(length, IndyTextEncoding_UTF8());
 	AContext->Connection->Disconnect();
 	ListBoxMessage->Items->Insert(0, "<- " + message);
+	mData.Add(message,AContext->Binding->PeerIP,RECEIVE);
 }
 //---------------------------------------------------------------------------
 
@@ -72,7 +76,7 @@ void __fastcall TForm1::Button1Click(TObject *Sender)
 void __fastcall TForm1::SaveLog()
 {
 	try{
-		ListBoxMessage->Items->SaveToFile(logName);
+		mData.SaveToFile(logName);
 		ComboBoxHost->Items->SaveToFile(ipLogName);
 	} catch (Exception &exception){
 		Application->ShowException(&exception);
@@ -84,7 +88,17 @@ void __fastcall TForm1::LoadLog()
 	if(!FileExists(logName) || !FileExists(ipLogName)) {
 		return;
 	}
-	ListBoxMessage->Items->LoadFromFile(logName);
+	mData.LoadFromFile(logName);
+	for(int i = 0; i < mData.Items->Count; i++) {
+		MessageItem *item = mData.Get(i);
+		UnicodeString msg;
+		if(item->type == SEND) {
+			msg = "-> ";
+		}else {
+			msg = "<- ";
+		}
+		ListBoxMessage->Items->Add(msg + item->message);
+    }
 	ComboBoxHost->Items->LoadFromFile(ipLogName);
 	if(ComboBoxHost->Items->Count > 0) {
 		ComboBoxHost->Text = ComboBoxHost->Items->Strings[0];
@@ -97,6 +111,7 @@ void __fastcall TForm1::DeleteLog()
 		return;
 	}
 	ListBoxMessage->Items->Clear();
+    mData.Clear();
 	ListBoxMessage->Items->SaveToFile(logName);
 }
 //---------------------------------------------------------------------------
@@ -115,11 +130,6 @@ void __fastcall TForm1::deleteLogClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Option1Click(TObject *Sender)
-{
-	Form3->Show();
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::ToggleSwitch1Click(TObject *Sender)
 {
@@ -148,4 +158,24 @@ void __fastcall TForm1::Copy1Click(TObject *Sender)
 	Clipboard()->AsText = cpmsg.SubString(4,cpmsg.Length() - 3);
 }
 //---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Detail1Click(TObject *Sender)
+{
+	if(ListBoxMessage->ItemIndex == -1) {
+		return;
+	}
+	MessageItem *item = mData.Get(ListBoxMessage->ItemIndex);
+	Form3->Memo1->Text = item->message;
+	Form3->Edit1->Text = item->IP;
+	if(item->type == SEND) {
+		Form3->Label2->Caption = "To";
+	} else {
+        Form3->Label2->Caption = "From";
+    }
+	Form3->Label4->Caption = item->time;
+    Form3->Show();
+}
+//---------------------------------------------------------------------------
+
 
