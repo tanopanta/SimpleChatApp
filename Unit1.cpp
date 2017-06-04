@@ -39,9 +39,11 @@ void __fastcall TForm1::ButtonSendClick(TObject *Sender)
 
 	int pos = message.Pos("\r\n");
 	if(pos == 0) {
-		pos =message.Length();
+		ListBoxMessage->Items->Insert(0, "-> " + message);
+	} else {
+		ListBoxMessage->Items->Insert(0, "-> " + message.SubString(0,pos) + " ~");
 	}
-	ListBoxMessage->Items->Insert(0, "-> " + message.SubString(0,pos));
+
 	mData.Add(message, Host, SEND);
 	EditMessage->Clear();
 
@@ -64,9 +66,10 @@ void __fastcall TForm1::IdTCPServer1Execute(TIdContext *AContext)
 	AContext->Connection->Disconnect();
 	int pos = message.Pos("\r\n");
 	if(pos == 0) {
-		pos =message.Length();
+		ListBoxMessage->Items->Insert(0, "<- " + message);
+	} else {
+		ListBoxMessage->Items->Insert(0, "<- " + message.SubString(0,pos) + " ~");
 	}
-	ListBoxMessage->Items->Insert(0, "<- " + message.SubString(0,pos));
 	mData.Add(message,AContext->Binding->PeerIP,RECEIVE);
 }
 //---------------------------------------------------------------------------
@@ -108,7 +111,13 @@ void __fastcall TForm1::LoadLog()
 		}else {
 			msg = "<- ";
 		}
-		ListBoxMessage->Items->Insert(0, msg + item->message);
+		int pos = item->message.Pos("\r\n");
+		if(pos == 0) {
+			ListBoxMessage->Items->Insert(0, msg + item->message);
+		} else {
+			ListBoxMessage->Items->Insert(0, msg + item->message.SubString(0,pos) + " ~");
+		}
+
     }
 	ComboBoxHost->Items->LoadFromFile(ipLogName);
 	if(ComboBoxHost->Items->Count > 0) {
@@ -208,4 +217,5 @@ void __fastcall TForm1::Action1Execute(TObject *Sender)
 	ButtonSendClick(Sender);
 }
 //---------------------------------------------------------------------------
+
 

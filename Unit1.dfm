@@ -1,8 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
+  ActiveControl = EditMessage
   Caption = 'Chat'
-  ClientHeight = 460
+  ClientHeight = 400
   ClientWidth = 611
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,14 +20,15 @@ object Form1: TForm1
   TextHeight = 21
   object Splitter1: TSplitter
     Left = 313
-    Top = 97
-    Height = 251
+    Top = 73
+    Height = 215
     ExplicitLeft = 336
+    ExplicitTop = 97
     ExplicitHeight = 268
   end
   object Splitter2: TSplitter
     Left = 0
-    Top = 348
+    Top = 288
     Width = 611
     Height = 3
     Cursor = crVSplit
@@ -37,7 +39,7 @@ object Form1: TForm1
   end
   object Panel2: TPanel
     Left = 0
-    Top = 351
+    Top = 291
     Width = 611
     Height = 109
     Align = alBottom
@@ -48,8 +50,6 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitTop = 368
-    ExplicitWidth = 628
     object ButtonSend: TButton
       Left = 513
       Top = 1
@@ -66,7 +66,6 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 0
       OnClick = ButtonSendClick
-      ExplicitLeft = 536
     end
     object EditMessage: TMemo
       Left = 1
@@ -82,20 +81,18 @@ object Form1: TForm1
       ParentFont = False
       ScrollBars = ssVertical
       TabOrder = 1
-      ExplicitWidth = 566
     end
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
     Width = 611
-    Height = 97
+    Height = 73
     Align = alTop
     TabOrder = 1
-    ExplicitWidth = 628
     object Label1: TLabel
       Left = 8
-      Top = 56
+      Top = 37
       Width = 37
       Height = 23
       Caption = 'Host'
@@ -108,7 +105,7 @@ object Form1: TForm1
     end
     object ToggleSwitch1: TToggleSwitch
       Left = 8
-      Top = 16
+      Top = 8
       Width = 124
       Height = 23
       State = tssOn
@@ -119,7 +116,7 @@ object Form1: TForm1
     end
     object ComboBoxHost: TComboBox
       Left = 64
-      Top = 56
+      Top = 37
       Width = 145
       Height = 27
       Font.Charset = DEFAULT_CHARSET
@@ -132,8 +129,8 @@ object Form1: TForm1
       Text = '127.0.0.1'
     end
     object Button1: TButton
-      Left = 231
-      Top = 57
+      Left = 239
+      Top = 39
       Width = 130
       Height = 25
       Caption = 'Check IP address'
@@ -149,9 +146,9 @@ object Form1: TForm1
   end
   object ListBoxMessage: TListBox
     Left = 0
-    Top = 97
+    Top = 73
     Width = 313
-    Height = 251
+    Height = 215
     Align = alLeft
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -163,50 +160,43 @@ object Form1: TForm1
     PopupMenu = PopupMenu1
     TabOrder = 0
     OnClick = ListBoxMessageClick
-    ExplicitHeight = 268
   end
   object Panel3: TPanel
     Left = 316
-    Top = 97
+    Top = 73
     Width = 295
-    Height = 251
+    Height = 215
     Align = alClient
     TabOrder = 3
-    ExplicitLeft = 339
-    ExplicitHeight = 268
     object MemoMessage: TMemo
       Left = 1
-      Top = 73
+      Top = 57
       Width = 293
-      Height = 177
+      Height = 157
       Align = alClient
       Lines.Strings = (
         'Chat v0.0.3')
       ReadOnly = True
+      ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitTop = 69
-      ExplicitWidth = 291
-      ExplicitHeight = 197
     end
     object GroupBox1: TGroupBox
       Left = 1
       Top = 1
       Width = 293
-      Height = 72
+      Height = 56
       Align = alTop
       TabOrder = 1
-      ExplicitLeft = 3
-      ExplicitTop = -5
       object Label3: TLabel
         Left = 5
-        Top = 32
+        Top = 29
         Width = 32
         Height = 21
         Caption = 'Date'
       end
       object LabelDate: TLabel
         Left = 64
-        Top = 32
+        Top = 29
         Width = 39
         Height = 21
         Caption = '00:00'
@@ -274,6 +264,12 @@ object Form1: TForm1
       Caption = 'Action1'
       ShortCut = 8205
       OnExecute = Action1Execute
+    end
+    object EditSelectAll1: TEditSelectAll
+      Category = #32232#38598
+      Caption = #12377#12409#12390#36984#25246'(&A)'
+      Hint = #12377#12409#12390#36984#25246'|'#12489#12461#12517#12513#12531#12488#20840#20307#12434#36984#25246#12375#12414#12377
+      ShortCut = 16449
     end
   end
 end

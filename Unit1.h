@@ -22,6 +22,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <System.Actions.hpp>
 #include <Vcl.ActnList.hpp>
+#include <Vcl.StdActns.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -54,6 +55,7 @@ __published:	// IDE で管理されるコンポーネント
 	TActionList *ActionList1;
 	TAction *Action1;
 	TSplitter *Splitter2;
+	TEditSelectAll *EditSelectAll1;
 	void __fastcall ButtonSendClick(TObject *Sender);
 	void __fastcall IdTCPServer1Execute(TIdContext *AContext);
 	void __fastcall Button1Click(TObject *Sender);
@@ -64,6 +66,7 @@ __published:	// IDE で管理されるコンポーネント
 	void __fastcall Copy1Click(TObject *Sender);
 	void __fastcall ListBoxMessageClick(TObject *Sender);
 	void __fastcall Action1Execute(TObject *Sender);
+
 private:	// ユーザー宣言
 public:		// ユーザー宣言
 	__fastcall TForm1(TComponent* Owner);
