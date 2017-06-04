@@ -2,7 +2,7 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 355
+  ClientHeight = 335
   ClientWidth = 530
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object Form1: TForm1
   TextHeight = 21
   object Panel2: TPanel
     Left = 0
-    Top = 325
+    Top = 305
     Width = 530
     Height = 30
     Align = alBottom
@@ -30,8 +30,6 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 2
-    ExplicitTop = 255
-    ExplicitWidth = 498
     object ButtonSend: TButton
       Left = 447
       Top = 1
@@ -48,7 +46,6 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 0
       OnClick = ButtonSendClick
-      ExplicitLeft = 415
     end
     object EditMessage: TEdit
       Left = 1
@@ -63,7 +60,6 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
       TabOrder = 1
-      ExplicitWidth = 414
       ExplicitHeight = 31
     end
   end
@@ -74,7 +70,6 @@ object Form1: TForm1
     Height = 97
     Align = alTop
     TabOrder = 1
-    ExplicitWidth = 498
     object Label1: TLabel
       Left = 8
       Top = 56
@@ -132,7 +127,7 @@ object Form1: TForm1
     Left = 0
     Top = 97
     Width = 530
-    Height = 228
+    Height = 208
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -143,8 +138,6 @@ object Form1: TForm1
     ParentFont = False
     PopupMenu = PopupMenu1
     TabOrder = 0
-    ExplicitWidth = 498
-    ExplicitHeight = 158
   end
   object IdTCPServer1: TIdTCPServer
     Bindings = <

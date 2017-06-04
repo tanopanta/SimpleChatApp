@@ -125,7 +125,10 @@ void __fastcall TForm1::FormShow(TObject *Sender)
 
 void __fastcall TForm1::deleteLogClick(TObject *Sender)
 {
-	DeleteLog();
+	int res = MessageDlgPos("Are you sure you want to remove?",mtConfirmation, mbOKCancel  , 0, Form1->Left + Form1->Width/4,Form1->Top + Form1->Height/3);
+	if(res == mrOk){
+		DeleteLog();
+	}
 }
 //---------------------------------------------------------------------------
 

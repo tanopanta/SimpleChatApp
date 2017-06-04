@@ -32,6 +32,8 @@ void __fastcall MessageData::SaveToFile(UnicodeString fileName) {
 	std::unique_ptr<TStreamWriter> sw(new TStreamWriter(fileName, false));
 	for(int i = Items->Count - 1; i >= 0; i--) {
 		MessageItem *item = Get(i);
+		item->message = StringReplace(item->message,"\t","  ",TReplaceFlags()<<rfReplaceAll);
+		item->message = StringReplace(item->message,"\r\n","\t",TReplaceFlags()<<rfReplaceAll);
 		sw->WriteLine(item->message);
 		sw->WriteLine(item->IP);
 		sw->WriteLine(item->type);
@@ -44,6 +46,7 @@ void __fastcall MessageData::LoadFromFile(UnicodeString fileName) {
 	while(sr->EndOfStream == false) {
 		MessageItem *item = new MessageItem;
 		item->message = sr->ReadLine();
+		item->message = StringReplace(item->message,"\t","\r\n",TReplaceFlags()<<rfReplaceAll);
 		item->IP = sr->ReadLine();
 		item->type = StrToInt(sr->ReadLine());
 		item->time = sr->ReadLine();
