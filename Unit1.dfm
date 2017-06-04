@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
-  ClientHeight = 335
-  ClientWidth = 530
+  Caption = 'Chat'
+  ClientHeight = 460
+  ClientWidth = 611
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,11 +17,29 @@ object Form1: TForm1
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 21
+  object Splitter1: TSplitter
+    Left = 313
+    Top = 97
+    Height = 251
+    ExplicitLeft = 336
+    ExplicitHeight = 268
+  end
+  object Splitter2: TSplitter
+    Left = 0
+    Top = 348
+    Width = 611
+    Height = 3
+    Cursor = crVSplit
+    Align = alBottom
+    ExplicitLeft = 336
+    ExplicitTop = 97
+    ExplicitWidth = 271
+  end
   object Panel2: TPanel
     Left = 0
-    Top = 305
-    Width = 530
-    Height = 30
+    Top = 351
+    Width = 611
+    Height = 109
     Align = alBottom
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -30,11 +48,13 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 2
+    ExplicitTop = 368
+    ExplicitWidth = 628
     object ButtonSend: TButton
-      Left = 447
+      Left = 513
       Top = 1
-      Width = 82
-      Height = 28
+      Width = 97
+      Height = 107
       Align = alRight
       Caption = 'Send'
       Default = True
@@ -46,30 +66,33 @@ object Form1: TForm1
       ParentFont = False
       TabOrder = 0
       OnClick = ButtonSendClick
+      ExplicitLeft = 536
     end
-    object EditMessage: TEdit
+    object EditMessage: TMemo
       Left = 1
       Top = 1
-      Width = 446
-      Height = 28
+      Width = 512
+      Height = 107
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -19
-      Font.Name = 'Tahoma'
+      Font.Height = -16
+      Font.Name = #28216#12468#12471#12483#12463' Medium'
       Font.Style = []
       ParentFont = False
+      ScrollBars = ssVertical
       TabOrder = 1
-      ExplicitHeight = 31
+      ExplicitWidth = 566
     end
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 530
+    Width = 611
     Height = 97
     Align = alTop
     TabOrder = 1
+    ExplicitWidth = 628
     object Label1: TLabel
       Left = 8
       Top = 56
@@ -88,6 +111,7 @@ object Form1: TForm1
       Top = 16
       Width = 124
       Height = 23
+      State = tssOn
       StateCaptions.CaptionOn = 'ServerOn'
       StateCaptions.CaptionOff = 'ServerOff'
       TabOrder = 0
@@ -126,9 +150,9 @@ object Form1: TForm1
   object ListBoxMessage: TListBox
     Left = 0
     Top = 97
-    Width = 530
-    Height = 208
-    Align = alClient
+    Width = 313
+    Height = 251
+    Align = alLeft
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -138,6 +162,69 @@ object Form1: TForm1
     ParentFont = False
     PopupMenu = PopupMenu1
     TabOrder = 0
+    OnClick = ListBoxMessageClick
+    ExplicitHeight = 268
+  end
+  object Panel3: TPanel
+    Left = 316
+    Top = 97
+    Width = 295
+    Height = 251
+    Align = alClient
+    TabOrder = 3
+    ExplicitLeft = 339
+    ExplicitHeight = 268
+    object MemoMessage: TMemo
+      Left = 1
+      Top = 73
+      Width = 293
+      Height = 177
+      Align = alClient
+      Lines.Strings = (
+        'Chat v0.0.3')
+      ReadOnly = True
+      TabOrder = 0
+      ExplicitTop = 69
+      ExplicitWidth = 291
+      ExplicitHeight = 197
+    end
+    object GroupBox1: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 293
+      Height = 72
+      Align = alTop
+      TabOrder = 1
+      ExplicitLeft = 3
+      ExplicitTop = -5
+      object Label3: TLabel
+        Left = 5
+        Top = 32
+        Width = 32
+        Height = 21
+        Caption = 'Date'
+      end
+      object LabelDate: TLabel
+        Left = 64
+        Top = 32
+        Width = 39
+        Height = 21
+        Caption = '00:00'
+      end
+      object LabelFromTo: TLabel
+        Left = 5
+        Top = 5
+        Width = 15
+        Height = 21
+        Caption = 'To'
+      end
+      object LabelIP: TLabel
+        Left = 62
+        Top = 5
+        Width = 4
+        Height = 21
+      end
+    end
   end
   object IdTCPServer1: TIdTCPServer
     Bindings = <
@@ -161,13 +248,6 @@ object Form1: TForm1
   object PopupMenu1: TPopupMenu
     Left = 192
     Top = 160
-    object Detail1: TMenuItem
-      Caption = 'Detail'
-      OnClick = Detail1Click
-    end
-    object N1: TMenuItem
-      Caption = '-'
-    end
     object deleteLog: TMenuItem
       Caption = 'Clear all Log'
       OnClick = deleteLogClick
@@ -185,6 +265,15 @@ object Form1: TForm1
       object Option1: TMenuItem
         Caption = 'Option'
       end
+    end
+  end
+  object ActionList1: TActionList
+    Left = 432
+    Top = 32
+    object Action1: TAction
+      Caption = 'Action1'
+      ShortCut = 8205
+      OnExecute = Action1Execute
     end
   end
 end

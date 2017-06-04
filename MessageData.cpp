@@ -30,9 +30,9 @@ UnicodeString __fastcall MessageData::GetMessage(int num) {
 }
 void __fastcall MessageData::SaveToFile(UnicodeString fileName) {
 	std::unique_ptr<TStreamWriter> sw(new TStreamWriter(fileName, false));
-	for(int i = Items->Count - 1; i >= 0; i--) {
+	for(int i = 0; i < Items->Count; i++) {
 		MessageItem *item = Get(i);
-		item->message = StringReplace(item->message,"\t","  ",TReplaceFlags()<<rfReplaceAll);
+		item->message = StringReplace(item->message,"\t","    ",TReplaceFlags()<<rfReplaceAll);
 		item->message = StringReplace(item->message,"\r\n","\t",TReplaceFlags()<<rfReplaceAll);
 		sw->WriteLine(item->message);
 		sw->WriteLine(item->IP);

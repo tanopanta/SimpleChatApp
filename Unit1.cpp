@@ -28,6 +28,7 @@ void __fastcall TForm1::ButtonSendClick(TObject *Sender)
 		ShowMessage("empty message!");
 		return;
 	}
+	message = StringReplace(message,"\t","    ",TReplaceFlags()<<rfReplaceAll);
 	UnicodeString Host = ComboBoxHost->Text;
 	IdTCPClient1->Host = Host;
 	IdTCPClient1->Connect();
@@ -36,10 +37,16 @@ void __fastcall TForm1::ButtonSendClick(TObject *Sender)
 	IdTCPClient1->Socket->Write(bytes);
 	IdTCPClient1->Disconnect();
 
-	ListBoxMessage->Items->Insert(0, "-> " + message);
+	int pos = message.Pos("\r\n");
+	if(pos == 0) {
+		pos =message.Length();
+	}
+	ListBoxMessage->Items->Insert(0, "-> " + message.SubString(0,pos));
 	mData.Add(message, Host, SEND);
 	EditMessage->Clear();
 
+
+	//update IP list
 	int index = ComboBoxHost->Items->IndexOf(Host);
 	if(index == -1) {
 		ComboBoxHost->Items->Insert(0, Host);
@@ -55,7 +62,11 @@ void __fastcall TForm1::IdTCPServer1Execute(TIdContext *AContext)
 	int length = AContext->Connection->Socket->ReadInt32();
 	UnicodeString message = AContext->Connection->Socket->ReadString(length, IndyTextEncoding_UTF8());
 	AContext->Connection->Disconnect();
-	ListBoxMessage->Items->Insert(0, "<- " + message);
+	int pos = message.Pos("\r\n");
+	if(pos == 0) {
+		pos =message.Length();
+	}
+	ListBoxMessage->Items->Insert(0, "<- " + message.SubString(0,pos));
 	mData.Add(message,AContext->Binding->PeerIP,RECEIVE);
 }
 //---------------------------------------------------------------------------
@@ -97,7 +108,7 @@ void __fastcall TForm1::LoadLog()
 		}else {
 			msg = "<- ";
 		}
-		ListBoxMessage->Items->Add(msg + item->message);
+		ListBoxMessage->Items->Insert(0, msg + item->message);
     }
 	ComboBoxHost->Items->LoadFromFile(ipLogName);
 	if(ComboBoxHost->Items->Count > 0) {
@@ -120,6 +131,9 @@ void __fastcall TForm1::DeleteLog()
 void __fastcall TForm1::FormShow(TObject *Sender)
 {
 	LoadLog();
+	LabelDate->Caption = Now().DateTimeString();
+	ButtonSend->Caption = "Send\r\n(Shift+Enter)";
+	IdTCPServer1->Active = true;
 }
 //---------------------------------------------------------------------------
 
@@ -163,22 +177,35 @@ void __fastcall TForm1::Copy1Click(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Detail1Click(TObject *Sender)
+
+
+void __fastcall TForm1::ListBoxMessageClick(TObject *Sender)
 {
-	if(ListBoxMessage->ItemIndex == -1) {
-		return;
-	}
-	MessageItem *item = mData.Get(ListBoxMessage->ItemIndex);
-	Form3->Memo1->Text = item->message;
-	Form3->Edit1->Text = item->IP;
-	if(item->type == SEND) {
-		Form3->Label2->Caption = "To";
-	} else {
-        Form3->Label2->Caption = "From";
-    }
-	Form3->Label4->Caption = item->time;
-    Form3->Show();
+	MessageDispUpdate(ListBoxMessage->ItemIndex);
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::MessageDispUpdate(int index)
+{
+	if(index == -1) {
+		return;
+	}
+	MessageItem *item = mData.Get(mData.Items->Count - index - 1);
+	MemoMessage->Text = item->message;
+	LabelIP->Caption = item->IP;
+	if(item->type == SEND) {
+		LabelFromTo->Caption = "To";
+	} else {
+		LabelFromTo->Caption = "From";
+	}
+	LabelDate->Caption = item->time;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Action1Execute(TObject *Sender)
+{
+	ButtonSendClick(Sender);
+}
+//---------------------------------------------------------------------------
 
