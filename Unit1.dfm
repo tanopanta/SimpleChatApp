@@ -3,7 +3,7 @@ object Form1: TForm1
   Top = 0
   ActiveControl = EditMessage
   Caption = 'Chat'
-  ClientHeight = 400
+  ClientHeight = 360
   ClientWidth = 611
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,14 +21,14 @@ object Form1: TForm1
   object Splitter1: TSplitter
     Left = 313
     Top = 73
-    Height = 215
+    Height = 175
     ExplicitLeft = 336
     ExplicitTop = 97
     ExplicitHeight = 268
   end
   object Splitter2: TSplitter
     Left = 0
-    Top = 288
+    Top = 248
     Width = 611
     Height = 3
     Cursor = crVSplit
@@ -39,7 +39,7 @@ object Form1: TForm1
   end
   object Panel2: TPanel
     Left = 0
-    Top = 291
+    Top = 251
     Width = 611
     Height = 109
     Align = alBottom
@@ -148,7 +148,7 @@ object Form1: TForm1
     Left = 0
     Top = 73
     Width = 313
-    Height = 215
+    Height = 175
     Align = alLeft
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -165,14 +165,14 @@ object Form1: TForm1
     Left = 316
     Top = 73
     Width = 295
-    Height = 215
+    Height = 175
     Align = alClient
     TabOrder = 3
     object MemoMessage: TMemo
       Left = 1
       Top = 57
       Width = 293
-      Height = 157
+      Height = 117
       Align = alClient
       Lines.Strings = (
         'Chat v0.0.3')
@@ -187,6 +187,8 @@ object Form1: TForm1
       Height = 56
       Align = alTop
       TabOrder = 1
+      ExplicitLeft = 3
+      ExplicitTop = 6
       object Label3: TLabel
         Left = 5
         Top = 29
@@ -209,10 +211,11 @@ object Form1: TForm1
         Caption = 'To'
       end
       object LabelIP: TLabel
-        Left = 62
+        Left = 64
         Top = 5
-        Width = 4
+        Width = 45
         Height = 21
+        Caption = '0.0.0.0'
       end
     end
   end

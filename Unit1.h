@@ -48,7 +48,6 @@ __published:	// IDE で管理されるコンポーネント
 	TMemo *MemoMessage;
 	TLabel *LabelFromTo;
 	TLabel *Label3;
-	TLabel *LabelIP;
 	TLabel *LabelDate;
 	TGroupBox *GroupBox1;
 	TMemo *EditMessage;
@@ -56,6 +55,7 @@ __published:	// IDE で管理されるコンポーネント
 	TAction *Action1;
 	TSplitter *Splitter2;
 	TEditSelectAll *EditSelectAll1;
+	TLabel *LabelIP;
 	void __fastcall ButtonSendClick(TObject *Sender);
 	void __fastcall IdTCPServer1Execute(TIdContext *AContext);
 	void __fastcall Button1Click(TObject *Sender);
